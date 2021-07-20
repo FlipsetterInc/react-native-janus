@@ -88,6 +88,7 @@ export default class JanusVideoRoomPlugin extends JanusPlugin {
     this.publishers = null;
 
     this.roomID = null;
+    this.roomPin = null;
     this.displayName = null;
     this.stream = null;
 
@@ -104,6 +105,14 @@ export default class JanusVideoRoomPlugin extends JanusPlugin {
   setRoomID = (roomID) => {
     this.roomID = roomID;
   };
+
+  /**
+   *
+   * @param {String} roomPin
+   */
+  setRoomPin = (roomPin) => {
+    this.roomPin = roomPin;
+  }
 
   /**
    *
@@ -340,6 +349,7 @@ export default class JanusVideoRoomPlugin extends JanusPlugin {
       let joinResponse = await this.sendAsync({
         request: "join",
         room: this.roomID,
+        pin: this.roomPin,
         display: this.displayName,
         ptype: "publisher",
       });
